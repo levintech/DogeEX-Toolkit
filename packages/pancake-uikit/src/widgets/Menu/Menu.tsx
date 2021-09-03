@@ -8,6 +8,13 @@ import Logo from "./components/Logo";
 import Panel from "./components/Panel";
 import { NavProps } from "./types";
 import { MENU_HEIGHT, SIDEBAR_WIDTH_REDUCED, SIDEBAR_WIDTH_FULL } from "./config";
+import Accordion from "./components/Accordion";
+import { LinkLabel, LinkStatus, MenuEntry } from "./components/MenuEntry";
+import MenuLink from "./components/MenuLink";
+import { SvgProps } from "../../components/Svg";
+import * as IconModule from "./icons";
+
+const Icons = IconModule as unknown as { [key: string]: React.FC<SvgProps> };
 
 const Wrapper = styled.div`
   position: relative;
@@ -44,9 +51,13 @@ const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   transform: translate3d(0, 0, 0);
   max-width: 100%;
 
+  // ${({ theme }) => theme.mediaQueries.nav} {
+  //   margin-left: ${({ isPushed }) => `${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px`};
+  //   max-width: ${({ isPushed }) => `calc(100% - ${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px)`};
+  // }
   ${({ theme }) => theme.mediaQueries.nav} {
-    margin-left: ${({ isPushed }) => `${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px`};
-    max-width: ${({ isPushed }) => `calc(100% - ${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px)`};
+    margin-left: 0;
+    max-width: 100%;
   }
 `;
 
@@ -109,6 +120,9 @@ const Menu: React.FC<NavProps> = ({
   // Find the home link if provided
   const homeLink = links.find((link) => link.label === "Home");
 
+  // Close the menu when a user clicks a link on mobile
+  const handleClick = isMobile ? () => setIsPushed(false) : undefined;
+
   return (
     <Wrapper>
       <StyledNav showMenu={showMenu}>
@@ -118,12 +132,63 @@ const Menu: React.FC<NavProps> = ({
           isDark={isDark}
           href={homeLink?.href ?? "/"}
         />
+        {
+          links.map(entry => {
+            const Icon = Icons[entry.icon];
+            const iconElement = <Icon width="24px" mr="8px" />;
+            const calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
+                
+            if (entry.items) {
+              const itemsMatchIndex = entry.items.findIndex((item) => item.href === location.pathname);
+              const initialOpenState = entry.initialOpenState === true ? entry.initialOpenState : itemsMatchIndex >= 0;
+    
+              return (
+                <Accordion
+                  key={entry.label}
+                  isPushed={isPushed}
+                  pushNav={setIsPushed}
+                  label={entry.label}
+                  status={entry.status}
+                  initialOpenState={initialOpenState}
+                  className={calloutClass}
+                  isActive={entry.items.some((item) => item.href === location.pathname)}
+                >
+                  {isPushed &&
+                    entry.items.map((item) => (
+                      <MenuEntry key={item.href} secondary isActive={item.href === location.pathname} onClick={handleClick}>
+                        <MenuLink href={item.href}>
+                          <LinkLabel isPushed={isPushed}>{item.label}</LinkLabel>
+                          {item.status && (
+                            <LinkStatus color={item.status.color} fontSize="14px">
+                              {item.status.text}
+                            </LinkStatus>
+                          )}
+                        </MenuLink>
+                      </MenuEntry>
+                    ))}
+                </Accordion>
+              );
+            }
+            return (
+              <MenuEntry key={entry.label} isActive={entry.href === location.pathname} className={calloutClass}>
+                <MenuLink href={entry.href} onClick={handleClick}>
+                  <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
+                  {entry.status && (
+                    <LinkStatus color={entry.status.color} fontSize="14px">
+                      {entry.status.text}
+                    </LinkStatus>
+                  )}
+                </MenuLink>
+              </MenuEntry>
+            );
+              })
+        }
         <Flex>
           {globalMenu} {userMenu}
         </Flex>
       </StyledNav>
       <BodyWrapper>
-        <Panel
+        {/* <Panel
           isPushed={isPushed}
           isMobile={isSmallerScreen}
           showMenu={showMenu}
@@ -135,7 +200,7 @@ const Menu: React.FC<NavProps> = ({
           cakePriceUsd={cakePriceUsd}
           pushNav={setIsPushed}
           links={links}
-        />
+        /> */}
         <Inner isPushed={isPushed} showMenu={showMenu}>
           {children}
         </Inner>
