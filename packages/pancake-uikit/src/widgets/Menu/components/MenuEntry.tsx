@@ -21,7 +21,7 @@ const rainbowAnimation = keyframes`
 `;
 
 const LinkLabel = styled.div<{ isPushed: boolean }>`
-  color: ${({ isPushed, theme }) => (isPushed ? theme.colors.textSubtle : "transparent")};
+  // color: ${({ isPushed, theme }) => (isPushed ? theme.colors.textSubtle : "transparent")};
   transition: color 0.4s;
   flex-grow: 1;
 `;
@@ -32,12 +32,13 @@ const MenuEntry = styled.div<Props>`
   align-items: center;
   height: ${MENU_ENTRY_HEIGHT}px;
   padding: ${({ secondary }) => (secondary ? "0 32px" : "0 16px")};
-  font-size: ${({ secondary }) => (secondary ? "14px" : "16px")};
+  font-size: ${({ secondary }) => (secondary ? "16px" : "18px")};
   // background-color: ${({ secondary, theme }) => (secondary ? theme.colors.background : "transparent")};
   background-color: "transparent";
-  color: ${({ theme }) => theme.colors.textSubtle};
+  color: ${({ isActive, theme }) => (isActive ? theme.colors.textActive : theme.colors.textSubtle)};
   box-shadow: ${({ isActive, theme }) => (isActive ? `0px 4px 0px ${theme.colors.primary}` : "none")};
 
+  
   a {
     display: flex;
     align-items: center;
