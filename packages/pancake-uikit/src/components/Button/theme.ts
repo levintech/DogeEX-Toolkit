@@ -2,7 +2,7 @@ import { scales, variants } from "./types";
 
 export const scaleVariants = {
   [scales.MD]: {
-    height: "48px",
+    height: "56px",
     padding: "0 24px",
   },
   [scales.SM]: {
@@ -18,15 +18,15 @@ export const scaleVariants = {
 
 export const styleVariants = {
   [variants.PRIMARY]: {
-    backgroundColor: "primary",
+    backgroundColor: "primaryBright",
     color: "white",
   },
   [variants.SECONDARY]: {
     backgroundColor: "transparent",
     border: "2px solid",
-    borderColor: "primary",
+    borderColor: "primaryBright",
     boxShadow: "none",
-    color: "primary",
+    color: "primaryBright",
     ":disabled": {
       backgroundColor: "transparent",
     },
@@ -34,7 +34,7 @@ export const styleVariants = {
   [variants.TERTIARY]: {
     backgroundColor: "tertiary",
     boxShadow: "none",
-    color: "primary",
+    color: "primaryBright",
   },
   [variants.SUBTLE]: {
     backgroundColor: "textSubtle",
