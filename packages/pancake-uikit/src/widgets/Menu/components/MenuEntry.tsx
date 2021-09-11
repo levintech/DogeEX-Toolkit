@@ -36,7 +36,7 @@ const MenuEntry = styled.div<Props>`
   // background-color: ${({ secondary, theme }) => (secondary ? theme.colors.background : "transparent")};
   background-color: "transparent";
   color: ${({ isActive, theme }) => (isActive ? theme.colors.textActive : theme.colors.textSubtle)};
-  box-shadow: ${({ isActive, theme }) => (isActive ? `0px 4px 0px ${theme.colors.primary}` : "none")};
+  box-shadow: ${({ isActive, theme }) => (isActive ? `0px 4px 0px ${theme.colors.primaryBright}` : "none")};
 
   
   a {
