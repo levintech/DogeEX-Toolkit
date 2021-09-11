@@ -13,6 +13,9 @@ import { LinkLabel, LinkStatus, MenuEntry } from "./components/MenuEntry";
 import MenuLink from "./components/MenuLink";
 import { SvgProps } from "../../components/Svg";
 import * as IconModule from "./icons";
+import CakePrice from "./components/CakePrice";
+import ThemeSwitcher from "./components/ThemeSwitcher";
+import LangSelector from "./components/LangSelector";
 
 const Icons = IconModule as unknown as { [key: string]: React.FC<SvgProps> };
 
@@ -135,7 +138,6 @@ const Menu: React.FC<NavProps> = ({
         {
           links.map(entry => {
             const Icon = Icons[entry.icon];
-            const iconElement = <Icon width="24px" mr="8px" />;
             const calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
                 
             if (entry.items) {
@@ -184,7 +186,13 @@ const Menu: React.FC<NavProps> = ({
           })
         }
         <Flex>
-          {globalMenu} {userMenu}
+          <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
+          <LangSelector currentLang={currentLang} langs={langs} setLang={setLang} />
+          <CakePrice cakePriceUsd={cakePriceUsd} />
+        </Flex>
+        <Flex>
+          {/* {globalMenu}  */}
+          {userMenu}
         </Flex>
       </StyledNav>
       <BodyWrapper>
