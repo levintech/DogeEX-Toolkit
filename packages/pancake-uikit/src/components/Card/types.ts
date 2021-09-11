@@ -32,3 +32,7 @@ export interface CardProps extends SpaceProps, HTMLAttributes<HTMLDivElement> {
   borderBackground?: string;
   background?: string;
 }
+
+export interface CardDividerProps extends SpaceProps, HTMLAttributes<HTMLDivElement> {
+  opacity: number;
+}
