@@ -22,6 +22,7 @@ export * from "./components/Progress";
 export * from "./components/Radio";
 export * from "./components/Slider";
 export * from "./components/Skeleton";
+export * from "./components/Span";
 export * from "./components/Spinner";
 export * from "./components/Stepper";
 export * from "./components/SubMenu";
