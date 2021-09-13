@@ -1,6 +1,7 @@
 import React from "react";
 import { useTheme } from "styled-components";
 import Heading from "../../components/Heading/Heading";
+import CardDivider from "../../components/Card/CardDivider";
 import getThemeValue from "../../util/getThemeValue";
 import { ModalBody, ModalHeader, ModalTitle, ModalContainer, ModalCloseButton, ModalBackButton } from "./styles";
 import { ModalProps } from "./types";
@@ -26,6 +27,9 @@ const Modal: React.FC<ModalProps> = ({
         </ModalTitle>
         {!hideCloseButton && <ModalCloseButton onDismiss={onDismiss} />}
       </ModalHeader>
+      <div style={{ padding: "0px 10px" }}>
+        <CardDivider opacity={0.6}/>
+      </div>
       <ModalBody p={bodyPadding}>{children}</ModalBody>
     </ModalContainer>
   );

@@ -44,7 +44,7 @@ const Input = styled.input<InputProps>`
   outline: 0;
   padding: 0 16px;
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+  // border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.textSubtle};
@@ -57,9 +57,9 @@ const Input = styled.input<InputProps>`
     cursor: not-allowed;
   }
 
-  &:focus:not(:disabled) {
-    box-shadow: ${({ theme }) => theme.shadows.focus};
-  }
+  // &:focus:not(:disabled) {
+  //   box-shadow: ${({ theme }) => theme.shadows.focus};
+  // }
 `;
 
 Input.defaultProps = {
