@@ -8,8 +8,10 @@ interface StyledCardDividerProps extends CardDividerProps {
 
 const StyledCardDivider = styled.div<Partial<StyledCardDividerProps>>`
   background: ${({ theme }) => theme.colors.cardDivider};
+  width: 95%;
   height: 1px;
   margin-top: 20px;
+  margin-left: 2.5%;
   padding: 0 10px;
 //   color: ${({ theme }) => theme.colors.cardDivider};
   opacity: ${({ opacity }) => opacity};

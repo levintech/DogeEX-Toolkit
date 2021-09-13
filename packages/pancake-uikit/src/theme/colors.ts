@@ -6,13 +6,13 @@ export const baseColors = {
   primaryBright: "#1ac486",
   primaryDark: "#0098A1",
   secondary: "#7645D9",
-  success: "#31D0AA",
+  success: "#1ac486",
   warning: "#FFB237",
 };
 
 export const additionalColors = {
   binance: "#F0B90B",
-  overlay: "#452a7a",
+  overlay: "#0000007a",
   gold: "#FFC700",
   silver: "#B2B2B2",
   bronze: "#E7974D",
