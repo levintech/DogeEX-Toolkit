@@ -7,13 +7,14 @@ import { useMatchBreakpoints } from "../../hooks";
 import Logo from "./components/Logo";
 import Panel from "./components/Panel";
 import { NavProps } from "./types";
-import { MENU_HEIGHT, SIDEBAR_WIDTH_REDUCED, SIDEBAR_WIDTH_FULL } from "./config";
+import { MENU_HEIGHT, MENU_ENTRY_HEIGHT, SIDEBAR_WIDTH_REDUCED, SIDEBAR_WIDTH_FULL } from "./config";
 import Accordion from "./components/Accordion";
 import { LinkLabel, LinkStatus, MenuEntry } from "./components/MenuEntry";
 import MenuLink from "./components/MenuLink";
 import { SvgProps } from "../../components/Svg";
 import * as IconModule from "./icons";
 import CakePrice from "./components/CakePrice";
+import SubNavPrice from "./components/SubNavPrice";
 import ThemeSwitcher from "./components/ThemeSwitcher";
 import LangSelector from "./components/LangSelector";
 
@@ -78,18 +79,25 @@ const MobileOnlyOverlay = styled(Overlay)`
 `;
 
 const SubNavContainer = styled.div`
+  width: 80%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 
 const ConnectContainer = styled.div`
   display: flex;
+  width: fit-content;
   align-items: center;
   justify-content: space-between;
 `;
 
 const StyledLinkContainer = styled.div`
   display: none;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  min-width: 500px;
+  max-width: 900px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     width: 100%;
@@ -101,21 +109,14 @@ const StyledNavLink = styled.div<Props>`
   display: flex;
   justify-content: center;
   font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  padding-left: 10px;
-  padding-right: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
   text-decoration: none;
   cursor: pointer;
-  color: ${({ isActive, theme }) => (isActive ? `${theme.colors.primary}` : "#c8c8c8")};
-
-  &:hover {
-    color: #eee;
-  }
-
-  &:active {
-    color: ${({ theme }) => `${theme.colors.primary}`};
-  }
+  align-items: center;
+  height: ${MENU_ENTRY_HEIGHT}px;
+  color: ${({ isActive, theme }) => (isActive ? theme.colors.textActive : theme.colors.textSubtle)};
+  box-shadow: ${({ isActive, theme }) => (isActive ? `0px 4px 0px ${theme.colors.primaryBright}` : "none")};
 `;
 
 const Menu: React.FC<NavProps> = ({
@@ -174,100 +175,42 @@ const Menu: React.FC<NavProps> = ({
   return (
     <Wrapper>
       <StyledNav showMenu={showMenu}>
-        {/* <SubNavContainer>
-          <ConnectContainer>
-            <Logo
-              isMobile={isMobile}
-              isPushed={isPushed}
-              togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
-              isDark={isDark}
-              href={homeLink?.href ?? "/"}
-            />
-            <StyledLinkContainer>
-              {
-                links.map(entry => {
-                  return (
-                    <StyledNavLink key={entry.href} isActive={entry.href === location.pathname}>
-                      <MenuLink style={{ width: 'max-content'}} href={entry.href}>
-                        <div style={{display: 'flex', margin: 'auo'}}>
-                          <div style={{margin: 'auto', marginLeft: '5px'}}>{entry.label}</div>
-                        </div>
-                      </MenuLink>
-                    </StyledNavLink>
-                  )
-                })
-              }
-            </StyledLinkContainer>
-          </ConnectContainer>
-        </SubNavContainer> */}
         <Logo
-          isMobile={isMobile}
           isPushed={isPushed}
           togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
           isDark={isDark}
           href={homeLink?.href ?? "/"}
         />
-        <div style={{flex: "0.3 0%", height: "50px"}}>
-
-        </div>
-        {
-          links.map(entry => {
-            const Icon = Icons[entry.icon];
-            const calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
-                
-            if (entry.items) {
-              const itemsMatchIndex = entry.items.findIndex((item) => item.href === location.pathname);
-              const initialOpenState = entry.initialOpenState === true ? entry.initialOpenState : itemsMatchIndex >= 0;
-    
-              return (
-                <Accordion
-                  key={entry.label}
-                  isPushed={isPushed}
-                  pushNav={setIsPushed}
-                  label={entry.label}
-                  status={entry.status}
-                  initialOpenState={initialOpenState}
-                  className={calloutClass}
-                  isActive={entry.items.some((item) => item.href === location.pathname)}
-                >
-                  {isPushed &&
-                    entry.items.map((item) => (
-                      <MenuEntry key={item.href} secondary isActive={item.href === location.pathname} onClick={handleClick}>
-                        <MenuLink href={item.href}>
-                          <LinkLabel isPushed={isPushed}>{item.label}</LinkLabel>
-                          {item.status && (
-                            <LinkStatus color={item.status.color} fontSize="14px">
-                              {item.status.text}
-                            </LinkStatus>
-                          )}
-                        </MenuLink>
-                      </MenuEntry>
-                    ))}
-                </Accordion>
-              );
+        <SubNavContainer>
+          <StyledLinkContainer>
+            {
+              links.map(entry => {
+                return (
+                  <StyledNavLink key={entry.href} isActive={entry.href === location.pathname}>
+                    <MenuLink href={entry.href} onClick={handleClick}>
+                      <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
+                      {entry.status && (
+                        <LinkStatus color={entry.status.color} fontSize="14px">
+                          {entry.status.text}
+                        </LinkStatus>
+                      )}
+                    </MenuLink>
+                  </StyledNavLink>
+                )
+              })
             }
-            return (
-              <MenuEntry key={entry.label} isActive={entry.href === location.pathname} className={calloutClass}>
-                <MenuLink href={entry.href} onClick={handleClick}>
-                  <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
-                  {entry.status && (
-                    <LinkStatus color={entry.status.color} fontSize="14px">
-                      {entry.status.text}
-                    </LinkStatus>
-                  )}
-                </MenuLink>
-              </MenuEntry>
-            );
-          })
-        }
-        <Flex>
-          <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
-          <LangSelector currentLang={currentLang} langs={langs} setLang={setLang} />
-        </Flex>
-        <Flex>
-          <CakePrice cakePriceUsd={cakePriceUsd} />
-          {userMenu}
-        </Flex>
+          </StyledLinkContainer>
+          <ConnectContainer>
+            <Flex>
+              <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
+              {/* <LangSelector currentLang={currentLang} langs={langs} setLang={setLang} /> */}
+            </Flex>
+            <Flex>
+              <SubNavPrice cakePriceUsd={cakePriceUsd} />
+              {userMenu}
+            </Flex>
+          </ConnectContainer>
+        </SubNavContainer>
       </StyledNav>
       <BodyWrapper>
         {/* <Panel
