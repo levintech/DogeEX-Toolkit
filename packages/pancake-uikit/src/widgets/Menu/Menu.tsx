@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled, {DefaultTheme} from "styled-components";
 import throttle from "lodash/throttle";
 import Overlay from "../../components/Overlay/Overlay";
 import Flex from "../../components/Box/Flex";
@@ -18,6 +18,11 @@ import ThemeSwitcher from "./components/ThemeSwitcher";
 import LangSelector from "./components/LangSelector";
 
 const Icons = IconModule as unknown as { [key: string]: React.FC<SvgProps> };
+
+export interface Props {
+  isActive?: boolean;
+  theme: DefaultTheme;
+}
 
 const Wrapper = styled.div`
   position: relative;
@@ -69,6 +74,47 @@ const MobileOnlyOverlay = styled(Overlay)`
 
   ${({ theme }) => theme.mediaQueries.nav} {
     display: none;
+  }
+`;
+
+const SubNavContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ConnectContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const StyledLinkContainer = styled.div`
+  display: none;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 100%;
+    display: flex;
+  }
+`;
+
+const StyledNavLink = styled.div<Props>`
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  color: ${({ isActive, theme }) => (isActive ? `${theme.colors.primary}` : "#c8c8c8")};
+
+  &:hover {
+    color: #eee;
+  }
+
+  &:active {
+    color: ${({ theme }) => `${theme.colors.primary}`};
   }
 `;
 
@@ -128,6 +174,32 @@ const Menu: React.FC<NavProps> = ({
   return (
     <Wrapper>
       <StyledNav showMenu={showMenu}>
+        {/* <SubNavContainer>
+          <ConnectContainer>
+            <Logo
+              isMobile={isMobile}
+              isPushed={isPushed}
+              togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
+              isDark={isDark}
+              href={homeLink?.href ?? "/"}
+            />
+            <StyledLinkContainer>
+              {
+                links.map(entry => {
+                  return (
+                    <StyledNavLink key={entry.href} isActive={entry.href === location.pathname}>
+                      <MenuLink style={{ width: 'max-content'}} href={entry.href}>
+                        <div style={{display: 'flex', margin: 'auo'}}>
+                          <div style={{margin: 'auto', marginLeft: '5px'}}>{entry.label}</div>
+                        </div>
+                      </MenuLink>
+                    </StyledNavLink>
+                  )
+                })
+              }
+            </StyledLinkContainer>
+          </ConnectContainer>
+        </SubNavContainer> */}
         <Logo
           isMobile={isMobile}
           isPushed={isPushed}
@@ -135,6 +207,9 @@ const Menu: React.FC<NavProps> = ({
           isDark={isDark}
           href={homeLink?.href ?? "/"}
         />
+        <div style={{flex: "0.3 0%", height: "50px"}}>
+
+        </div>
         {
           links.map(entry => {
             const Icon = Icons[entry.icon];
@@ -188,10 +263,9 @@ const Menu: React.FC<NavProps> = ({
         <Flex>
           <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
           <LangSelector currentLang={currentLang} langs={langs} setLang={setLang} />
-          <CakePrice cakePriceUsd={cakePriceUsd} />
         </Flex>
         <Flex>
-          {/* {globalMenu}  */}
+          <CakePrice cakePriceUsd={cakePriceUsd} />
           {userMenu}
         </Flex>
       </StyledNav>

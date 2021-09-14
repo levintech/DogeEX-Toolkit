@@ -14,6 +14,10 @@ export const scaleVariants = {
     fontSize: "12px",
     padding: "0 8px",
   },
+  [scales.NAV]: {
+    height: "40px",
+    padding: "0 48px",
+  },
 };
 
 export const styleVariants = {
