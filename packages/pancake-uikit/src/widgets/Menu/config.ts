@@ -22,18 +22,14 @@ export const links = [
     href: "/",
   },
   {
-    label: "Trade",
-    icon: "TradeIcon",
-    items: [
-      {
-        label: "Exchange",
-        href: "https://exchange.pancakeswap.finance",
-      },
-      {
-        label: "Liquidity",
-        href: "https://exchange.pancakeswap.finance/#/pool",
-      },
-    ],
+    label: "Exchange",
+    icon: "HomeIcon",
+    href: "/swap",
+  },
+  {
+    label: "Liquidity",
+    icon: "HomeIcon",
+    href: "/liquidity",
   },
   {
     label: "Farms",
@@ -206,7 +202,7 @@ export const socials = [
 ];
 
 export const MENU_HEIGHT = 90;
-export const SUBNAV_LINK_HEIGHT = 32;
+export const SUBNAV_LINK_HEIGHT = 36;
 export const MENU_ENTRY_HEIGHT = 48;
 export const SIDEBAR_WIDTH_FULL = 240;
 export const SIDEBAR_WIDTH_REDUCED = 56;

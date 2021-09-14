@@ -10,12 +10,20 @@ interface Props {
 }
 
 const PriceContainer = styled.div`
-  display: flex;
+  display: none;
   background: #2d3748;
   height: 42px;
   border-radius: 24px;
   margin: 0px 10px;
   align-items: center;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 100%;
+    display: flex;
+  }
+  .right-eye {
+    animation-delay: 20ms;
+  }
 `;
 
 const PriceLink = styled.a`

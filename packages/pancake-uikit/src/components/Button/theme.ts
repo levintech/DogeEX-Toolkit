@@ -1,3 +1,4 @@
+import { width } from "styled-system";
 import { scales, variants } from "./types";
 
 export const scaleVariants = {
@@ -15,8 +16,9 @@ export const scaleVariants = {
     padding: "0 8px",
   },
   [scales.NAV]: {
-    height: "40px",
-    padding: "0 48px",
+    height: "42px",
+    padding: "0 32px",
+    minWidth: "200px",
   },
 };
 

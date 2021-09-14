@@ -17,11 +17,20 @@ const InactiveButton: PolymorphicComponent<InactiveButtonProps, "button"> = styl
 `;
 const StyledButton = styled(Button)<BaseButtonProps>`
   margin-bottom: 10px;
-  padding: 12px 0px;
+  padding-top: 12px;
   font-weight: 500;
   letter-spacing: 0.03em;
   color: ${({ theme }) => `${theme.colors.primaryBright}`};
-  box-shadow: ${({ theme }) => `0px 4px 0px ${theme.colors.primaryBright}!important`};
+  // box-shadow: ${({ theme }) => `0px 4px 0px ${theme.colors.primaryBright}!important`};
+
+  &:after {
+    margin-top: 12px;
+    content: "";
+    display: block;
+    background: ${({ theme }) => `${theme.colors.primaryBright}`};
+    height: 4px;
+    width: 100%;
+  }
 `
 
 const ButtonMenuItem: PolymorphicComponent<ButtonMenuItemProps, "button"> = ({

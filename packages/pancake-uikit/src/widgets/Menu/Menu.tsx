@@ -92,13 +92,14 @@ const ConnectContainer = styled.div`
 
 const StyledLinkContainer = styled.div`
   display: none;
+  padding-top: 4px;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
   min-width: 500px;
   max-width: 900px;
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.xxl} {
     width: 100%;
     display: flex;
   }
@@ -115,7 +116,9 @@ const StyledNavLink = styled.div<Props>`
   align-items: center;
   height: ${SUBNAV_LINK_HEIGHT}px;
   color: ${({ isActive, theme }) => (isActive ? theme.colors.textActive : theme.colors.textSubtle)};
-  box-shadow: ${({ isActive, theme }) => (isActive ? `0px 4px 0px ${theme.colors.primaryBright}` : "none")};
+  border-bottom: 4px solid;
+  border-bottom-color: ${({ isActive, theme }) => (isActive ? theme.colors.primaryBright : "transparent")};
+  // box-shadow: ${({ isActive, theme }) => (isActive ? `0px 4px 0px ${theme.colors.primaryBright}` : "none")};
 
   &:hover {
     color: ${({ theme }) => (theme.colors.textActive)};
