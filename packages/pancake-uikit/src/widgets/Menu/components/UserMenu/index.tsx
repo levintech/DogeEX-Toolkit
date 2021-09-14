@@ -10,12 +10,12 @@ import { UserMenuItem } from "./styles";
 
 const StyledUserMenu = styled(Flex)`
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.tertiary};
-  border-radius: 16px;
+  background-color: ${({ theme }) => theme.colors.input};
+  border-radius: 24px;
   // box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   display: inline-flex;
-  height: 32px;
+  height: 42px;
   padding-left: 40px;
   padding-right: 8px;
   position: relative;

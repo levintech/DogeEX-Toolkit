@@ -17,7 +17,6 @@ const MenuIconWrapper = styled.div<{ borderColor: keyof Colors }>`
   justify-content: center;
   left: 0;
   position: absolute;
-  top: -4px;
   width: 40px;
   z-index: 102;
 `;
@@ -25,7 +24,6 @@ const MenuIconWrapper = styled.div<{ borderColor: keyof Colors }>`
 const ProfileIcon = styled(Image)`
   left: 0;
   position: absolute;
-  top: -4px;
   z-index: 102;
 
   & > img {
