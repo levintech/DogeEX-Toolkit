@@ -7,15 +7,14 @@ import { useMatchBreakpoints } from "../../hooks";
 import Logo from "./components/Logo";
 import Panel from "./components/Panel";
 import { NavProps } from "./types";
-import { MENU_HEIGHT, MENU_ENTRY_HEIGHT, SIDEBAR_WIDTH_REDUCED, SIDEBAR_WIDTH_FULL } from "./config";
-import Accordion from "./components/Accordion";
+import { MENU_HEIGHT, SUBNAV_LINK_HEIGHT, MENU_ENTRY_HEIGHT, SIDEBAR_WIDTH_REDUCED, SIDEBAR_WIDTH_FULL } from "./config";
 import { LinkLabel, LinkStatus, MenuEntry } from "./components/MenuEntry";
 import MenuLink from "./components/MenuLink";
 import { SvgProps } from "../../components/Svg";
 import * as IconModule from "./icons";
 import CakePrice from "./components/CakePrice";
 import SubNavPrice from "./components/SubNavPrice";
-import ThemeSwitcher from "./components/ThemeSwitcher";
+import SubNavThemeSwitcher from "./components/SubNavThemeSwitcher";
 import LangSelector from "./components/LangSelector";
 
 const Icons = IconModule as unknown as { [key: string]: React.FC<SvgProps> };
@@ -114,9 +113,18 @@ const StyledNavLink = styled.div<Props>`
   text-decoration: none;
   cursor: pointer;
   align-items: center;
-  height: ${MENU_ENTRY_HEIGHT}px;
+  height: ${SUBNAV_LINK_HEIGHT}px;
   color: ${({ isActive, theme }) => (isActive ? theme.colors.textActive : theme.colors.textSubtle)};
   box-shadow: ${({ isActive, theme }) => (isActive ? `0px 4px 0px ${theme.colors.primaryBright}` : "none")};
+
+  &:hover {
+    color: ${({ theme }) => (theme.colors.textActive)};
+  }
+`;
+
+const StyledNavLinkLabel = styled.div`
+  transition: color 0.4s;
+  flex-grow: 1;
 `;
 
 const Menu: React.FC<NavProps> = ({
@@ -131,9 +139,11 @@ const Menu: React.FC<NavProps> = ({
   links,
   children,
 }) => {
-  const { isMobile, isTablet } = useMatchBreakpoints();
-  const isSmallerScreen = isMobile || isTablet;
-  const [isPushed, setIsPushed] = useState(!isSmallerScreen);
+  // const { isMobile, isTablet } = useMatchBreakpoints();
+  // const isSmallerScreen = isMobile || isTablet;
+  const { isXl } = useMatchBreakpoints();
+  const isMobile = isXl === false;
+  const [isPushed, setIsPushed] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
   const refPrevOffset = useRef(window.pageYOffset);
 
@@ -187,13 +197,8 @@ const Menu: React.FC<NavProps> = ({
               links.map(entry => {
                 return (
                   <StyledNavLink key={entry.href} isActive={entry.href === location.pathname}>
-                    <MenuLink href={entry.href} onClick={handleClick}>
-                      <LinkLabel isPushed={isPushed}>{entry.label}</LinkLabel>
-                      {entry.status && (
-                        <LinkStatus color={entry.status.color} fontSize="14px">
-                          {entry.status.text}
-                        </LinkStatus>
-                      )}
+                    <MenuLink href={entry.href}>
+                      <StyledNavLinkLabel>{entry.label}</StyledNavLinkLabel>
                     </MenuLink>
                   </StyledNavLink>
                 )
@@ -202,7 +207,7 @@ const Menu: React.FC<NavProps> = ({
           </StyledLinkContainer>
           <ConnectContainer>
             <Flex>
-              <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
+              <SubNavThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
               {/* <LangSelector currentLang={currentLang} langs={langs} setLang={setLang} /> */}
             </Flex>
             <Flex>
@@ -213,9 +218,9 @@ const Menu: React.FC<NavProps> = ({
         </SubNavContainer>
       </StyledNav>
       <BodyWrapper>
-        {/* <Panel
+        <Panel
           isPushed={isPushed}
-          isMobile={isSmallerScreen}
+          isMobile={isMobile}
           showMenu={showMenu}
           isDark={isDark}
           toggleTheme={toggleTheme}
@@ -225,7 +230,7 @@ const Menu: React.FC<NavProps> = ({
           cakePriceUsd={cakePriceUsd}
           pushNav={setIsPushed}
           links={links}
-        /> */}
+        />
         <Inner isPushed={isPushed} showMenu={showMenu}>
           {children}
         </Inner>
