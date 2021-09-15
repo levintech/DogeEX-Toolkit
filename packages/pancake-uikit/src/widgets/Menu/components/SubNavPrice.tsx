@@ -11,7 +11,7 @@ interface Props {
 
 const PriceContainer = styled.div`
   display: none;
-  background: #2d3748;
+  background: ${({ theme }) => theme.colors.input};
   height: 42px;
   border-radius: 24px;
   margin: 0px 10px;
