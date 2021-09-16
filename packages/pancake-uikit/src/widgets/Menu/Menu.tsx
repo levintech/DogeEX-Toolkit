@@ -31,7 +31,8 @@ const Wrapper = styled.div`
 
 const StyledNav = styled.nav<{ showMenu: boolean }>`
   position: fixed;
-  top: ${({ showMenu }) => (showMenu ? 0 : `-${MENU_HEIGHT}px`)};
+  // top: ${({ showMenu }) => (showMenu ? 0 : `-${MENU_HEIGHT}px`)};
+  top: 0px;
   left: 0;
   transition: top 0.2s;
   display: flex;
@@ -139,6 +140,8 @@ const Menu: React.FC<NavProps> = ({
   setLang,
   currentLang,
   cakePriceUsd,
+  activeItem,
+  activeSubItem,
   links,
   children,
 }) => {
@@ -199,7 +202,7 @@ const Menu: React.FC<NavProps> = ({
             {
               links.map(entry => {
                 return (
-                  <StyledNavLink key={entry.href} isActive={entry.href === location.pathname}>
+                  <StyledNavLink key={entry.href} isActive={entry.href === activeItem || entry.href === activeSubItem}>
                     <MenuLink href={entry.href}>
                       <StyledNavLinkLabel>{entry.label}</StyledNavLinkLabel>
                     </MenuLink>
@@ -221,7 +224,7 @@ const Menu: React.FC<NavProps> = ({
         </SubNavContainer>
       </StyledNav>
       <BodyWrapper>
-        <Panel
+        {/* <Panel
           isPushed={isPushed}
           isMobile={isMobile}
           showMenu={showMenu}
@@ -233,7 +236,7 @@ const Menu: React.FC<NavProps> = ({
           cakePriceUsd={cakePriceUsd}
           pushNav={setIsPushed}
           links={links}
-        />
+        /> */}
         <Inner isPushed={isPushed} showMenu={showMenu}>
           {children}
         </Inner>
