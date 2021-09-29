@@ -3,6 +3,7 @@ import styled, { useTheme } from "styled-components";
 import getExternalLinkProps from "../../util/getExternalLinkProps";
 import Grid from "../../components/Box/Grid";
 import Box from "../../components/Box/Box";
+import CardDivider from "../../components/Card/CardDivider";
 import getThemeValue from "../../util/getThemeValue";
 import Text from "../../components/Text/Text";
 import Heading from "../../components/Heading/Heading";
@@ -57,12 +58,14 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayC
 
   return (
     <ModalContainer minWidth="320px">
-      <ModalHeader background={getThemeValue("colors.gradients.bubblegum")(theme)}>
+      {/* <ModalHeader background={getThemeValue("colors.gradients.bubblegum")(theme)}> */}
+      <ModalHeader background="transparent">
         <ModalTitle>
           <Heading>{t("Connect Wallet")}</Heading>
         </ModalTitle>
         <ModalCloseButton onDismiss={onDismiss} />
       </ModalHeader>
+      <CardDivider opacity={0.6}/>
       <ModalBody width={["320px", null, "340px"]}>
         <WalletWrapper py="24px" maxHeight="453px" overflowY="auto">
           <Grid gridTemplateColumns="1fr 1fr">
@@ -81,7 +84,7 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayC
           <Button
             as="a"
             href="https://docs.pancakeswap.finance/get-started/connection-guide"
-            variant="subtle"
+            variant="primary"
             width="100%"
             {...getExternalLinkProps()}
           >
