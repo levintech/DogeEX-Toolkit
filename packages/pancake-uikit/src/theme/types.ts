@@ -49,6 +49,7 @@ export type Colors = {
   warning: string;
   cardHeader: string;
   cardBorder: string;
+  cardShadow: string;
   cardDivider: string;
   contrast: string;
   dropdown: string;
