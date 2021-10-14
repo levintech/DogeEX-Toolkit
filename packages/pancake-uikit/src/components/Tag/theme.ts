@@ -4,38 +4,38 @@ export const scaleVariants = {
   [scales.MD]: {
     height: "28px",
     padding: "0 8px",
-    fontSize: "14px",
+    fontSize: "16px",
   },
   [scales.SM]: {
     height: "24px",
     padding: "0 4px",
-    fontSize: "12px",
+    fontSize: "14px",
   },
 };
 
 export const styleVariants = {
   [variants.PRIMARY]: {
-    backgroundColor: "primary",
+    color: "primary",
   },
   [variants.SECONDARY]: {
-    backgroundColor: "secondary",
+    color: "secondary",
   },
   [variants.SUCCESS]: {
-    backgroundColor: "success",
+    color: "success",
   },
   [variants.TEXTDISABLED]: {
-    backgroundColor: "textDisabled",
+    color: "textDisabled",
   },
   [variants.TEXTSUBTLE]: {
-    backgroundColor: "textSubtle",
+    color: "textSubtle",
   },
   [variants.BINANCE]: {
-    backgroundColor: "binance",
+    color: "binance",
   },
   [variants.FAILURE]: {
-    backgroundColor: "failure",
+    color: "failure",
   },
   [variants.WARNING]: {
-    backgroundColor: "warning",
+    color: "warning",
   },
 };
