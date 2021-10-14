@@ -35,14 +35,14 @@ const getBorderColor = ({ isActive, isSuccess, isWarning, borderBackground, them
   }
 
   if (isActive) {
-    return `linear-gradient(180deg, ${theme.colors.primaryBright}, ${theme.colors.secondary})`;
+    return `transparent`;
   }
 
   return theme.colors.cardBorder;
 };
 
 export const StyledCard = styled.div<StyledCardProps>`
-  // background: ${getBorderColor};
+  background: ${getBorderColor};
   border-radius: ${({ theme }) => theme.radii.card};
   color: ${({ theme, isDisabled }) => theme.colors[isDisabled ? "textDisabled" : "text"]};
   overflow: hidden;
