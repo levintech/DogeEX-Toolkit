@@ -11,6 +11,7 @@ export type Scales = typeof scales[keyof typeof scales];
 
 export interface InputProps extends SpaceProps {
   scale?: Scales;
+  backgroundColor?: string;
   isSuccess?: boolean;
   isWarning?: boolean;
 }
