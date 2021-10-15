@@ -3,7 +3,7 @@ import { scales, variants } from "./types";
 
 export const scaleVariants = {
   [scales.MD]: {
-    height: "56px",
+    height: "48px",
     padding: "0 24px",
   },
   [scales.SM]: {
@@ -40,7 +40,7 @@ export const styleVariants = {
   [variants.TERTIARY]: {
     backgroundColor: "tertiary",
     boxShadow: "none",
-    color: "primaryBright",
+    color: "white",
   },
   [variants.SUBTLE]: {
     backgroundColor: "textSubtle",
