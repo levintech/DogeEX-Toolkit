@@ -12,7 +12,7 @@ import { LinkLabel, LinkStatus, MenuEntry } from "./components/MenuEntry";
 import MenuLink from "./components/MenuLink";
 import { SvgProps } from "../../components/Svg";
 import * as IconModule from "./icons";
-import miniDogePriceUsd from "./components/MiniDogePrice";
+import MiniDogePriceUsd from "./components/MiniDogePrice";
 import SubNavPrice from "./components/SubNavPrice";
 import SubNavThemeSwitcher from "./components/SubNavThemeSwitcher";
 import LangSelector from "./components/LangSelector";
