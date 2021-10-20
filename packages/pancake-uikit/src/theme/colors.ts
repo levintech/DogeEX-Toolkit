@@ -31,7 +31,7 @@ export const lightColors: Colors = {
   backgroundTooltip: "#d2c8b7",
   cardHeader: "transparent",
   cardBorder: "#e5dfd3",
-  cardShadow: "e5dfd3",
+  cardShadow: "#db7048",
   cardDivider: "#d2c8b7",
   contrast: "#191326",
   dropdown: "#d2c8b7",
