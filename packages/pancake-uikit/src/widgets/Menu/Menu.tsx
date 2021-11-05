@@ -97,10 +97,10 @@ const StyledLinkContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  min-width: 500px;
+  min-width: 400px;
   max-width: 900px;
 
-  ${({ theme }) => theme.mediaQueries.xxl} {
+  ${({ theme }) => theme.mediaQueries.md} {
     width: 100%;
     display: flex;
   }
@@ -224,7 +224,7 @@ const Menu: React.FC<NavProps> = ({
         </SubNavContainer>
       </StyledNav>
       <BodyWrapper>
-        {/* <Panel
+        <Panel
           isPushed={isPushed}
           isMobile={isMobile}
           showMenu={showMenu}
@@ -236,7 +236,7 @@ const Menu: React.FC<NavProps> = ({
           miniDogePriceUsd={miniDogePriceUsd}
           pushNav={setIsPushed}
           links={links}
-        /> */}
+        />
         <Inner isPushed={isPushed} showMenu={showMenu}>
           {children}
         </Inner>
