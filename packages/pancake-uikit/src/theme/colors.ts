@@ -46,6 +46,7 @@ export const lightColors: Colors = {
   textActive: "#000000",
   textPrice: "#0bc5ea",
   disabled: "#6b5839",
+  hamburger: "#D1335B",
   gradients: {
     bubblegum: "linear-gradient(139.73deg, #E5FDFF 0%, #F3EFFF 100%)",
     inverseBubblegum: "linear-gradient(139.73deg, #F3EFFF 0%, #E5FDFF 100%)",
@@ -86,6 +87,7 @@ export const darkColors: Colors = {
   textActive: "#FFFFFF",
   textPrice: "#0bc5ea",
   disabled: "#4a5568",
+  hamburger: "#D1335B",
   gradients: {
     bubblegum: "linear-gradient(139.73deg, #313D5C 0%, #3D2A54 100%)",
     inverseBubblegum: "linear-gradient(139.73deg, #3D2A54 0%, #313D5C 100%)",
