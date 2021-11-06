@@ -20,8 +20,8 @@ const rainbowAnimation = keyframes`
   }
 `;
 
-const LinkLabel = styled.div<{ isPushed: boolean }>`
-  color: ${({ isPushed, theme }) => (isPushed ? theme.colors.textSubtle : "transparent")};
+const LinkLabel = styled.div<{ isActive: boolean }>`
+color: ${({ isActive, theme }) => (isActive ? theme.colors.primaryBright : theme.colors.textSubtle)};
   transition: color 0.4s;
   flex-grow: 1;
 `;
@@ -31,10 +31,11 @@ const MenuEntry = styled.div<Props>`
   display: flex;
   align-items: center;
   height: ${MENU_ENTRY_HEIGHT}px;
-  padding: ${({ secondary }) => (secondary ? "0 32px" : "0 16px")};
+  padding: 15px 45px;
   font-size: ${({ secondary }) => (secondary ? "14px" : "16px")};
+  font-weight: 500;
   background-color: ${({ secondary, theme }) => (secondary ? theme.colors.background : "transparent")};
-  color: ${({ theme }) => theme.colors.textSubtle};
+  color: ${({ isActive, theme }) => (isActive ? theme.colors.primaryBright : theme.colors.textSubtle)};
   box-shadow: ${({ isActive, theme }) => (isActive ? `inset 4px 0px 0px ${theme.colors.primaryBright}` : "none")};
 
   a {
@@ -77,6 +78,6 @@ const LinkStatus = styled(Text)<{ color: keyof Colors }>`
   margin-left: 8px;
 `;
 
-const LinkLabelMemo = React.memo(LinkLabel, (prev, next) => prev.isPushed === next.isPushed);
+const LinkLabelMemo = React.memo(LinkLabel, (prev, next) => prev.isActive === next.isActive);
 
 export { MenuEntry, LinkStatus, LinkLabelMemo as LinkLabel };

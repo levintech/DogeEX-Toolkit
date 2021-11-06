@@ -6,5 +6,5 @@ export const light: NavTheme = {
 };
 
 export const dark: NavTheme = {
-  background: darkColors.backgroundAlt,
+  background: darkColors.dropdown,
 };
