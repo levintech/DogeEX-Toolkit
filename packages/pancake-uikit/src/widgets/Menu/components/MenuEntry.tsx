@@ -50,19 +50,20 @@ const MenuEntry = styled.div<Props>`
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.tertiary};
+    background-color: ${({ theme }) => theme.colors.disabled};
   }
 
   // Safari fix
   flex-shrink: 0;
 
-  &.rainbow {
-    background-clip: text;
-    animation: ${rainbowAnimation} 3s ease-in-out infinite;
-    background: ${({ theme }) => theme.colors.gradients.bubblegum};
-    background-size: 400% 100%;
-  }
+  // &.rainbow {
+  //   background-clip: text;
+  //   animation: ${rainbowAnimation} 3s ease-in-out infinite;
+  //   background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  //   background-size: 400% 100%;
+  // }
 `;
+
 MenuEntry.defaultProps = {
   secondary: false,
   isActive: false,
