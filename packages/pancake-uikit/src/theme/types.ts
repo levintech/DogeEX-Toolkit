@@ -67,6 +67,7 @@ export type Colors = {
   textActive: string;
   textPrice: string;
   disabled: string;
+  hamburger: string;
 
   // Gradients
   gradients: Gradients;
