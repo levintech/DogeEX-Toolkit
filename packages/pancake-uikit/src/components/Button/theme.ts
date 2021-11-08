@@ -1,5 +1,5 @@
-import { width } from "styled-system";
-import { scales, variants } from "./types";
+import { justifyContent, width } from "styled-system";
+import { scales, variants, justifies } from "./types";
 
 export const scaleVariants = {
   [scales.MD]: {
@@ -58,5 +58,17 @@ export const styleVariants = {
     backgroundColor: "transparent",
     color: "primaryBright",
     boxShadow: "none",
+  },
+};
+
+export const justifyVariants = {
+  [justifies.START]: {
+    justifyContent: "start",
+  },
+  [justifies.CENTER]: {
+    justifyContent: "center",
+  },
+  [justifies.END]: {
+    justifyContent: "end",
   },
 };

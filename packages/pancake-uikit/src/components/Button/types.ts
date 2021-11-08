@@ -19,8 +19,15 @@ export const variants = {
   SUCCESS: "success",
 } as const;
 
+export const justifies = {
+  START: "start",
+  CENTER: "center",
+  END: "end",
+} as const;
+
 export type Scale = typeof scales[keyof typeof scales];
 export type Variant = typeof variants[keyof typeof variants];
+export type Justify = typeof justifies[keyof typeof justifies];
 
 /**
  * @see https://www.benmvp.com/blog/polymorphic-react-components-typescript/
@@ -43,6 +50,7 @@ export interface BaseButtonProps extends LayoutProps, SpaceProps {
   isLoading?: boolean;
   scale?: Scale;
   variant?: Variant;
+  justify?: Justify;
   disabled?: boolean;
   startIcon?: ReactNode;
   endIcon?: ReactNode;

@@ -1,6 +1,6 @@
 import styled, { DefaultTheme } from "styled-components";
 import { space, layout, variant } from "styled-system";
-import { scaleVariants, styleVariants } from "./theme";
+import { scaleVariants, styleVariants, justifyVariants } from "./theme";
 import { BaseButtonProps } from "./types";
 
 interface ThemedButtonProps extends BaseButtonProps {
@@ -53,7 +53,6 @@ const StyledButton = styled.button<BaseButtonProps>`
   font-family: inherit;
   font-size: 16px;
   font-weight: 500;
-  justify-content: center;
   letter-spacing: 0.03em;
   line-height: 1;
   opacity: ${getOpacity};
@@ -77,6 +76,10 @@ const StyledButton = styled.button<BaseButtonProps>`
   })}
   ${variant({
     variants: styleVariants,
+  })}
+  ${variant({
+    prop: "justify",
+    variants: justifyVariants,
   })}
   ${layout}
   ${space}
