@@ -16,8 +16,8 @@ const StyledUserMenu = styled(Flex)`
   cursor: pointer;
   display: inline-flex;
   height: 42px;
-  padding-left: 40px;
-  padding-right: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
   position: relative;
 
   &:hover {
@@ -33,7 +33,7 @@ const LabelText = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     display: block;
     margin-left: 8px;
-    margin-right: 4px;
+    margin-right: 8px;
   }
 `;
 
@@ -70,6 +70,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
   avatarSrc,
   variant = variants.DEFAULT,
   children,
+  onUserMenuModal,
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -77,7 +78,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
   const [tooltipRef, setTooltipRef] = useState<HTMLDivElement | null>(null);
   const hideTimeout = useRef<number>();
   const isHoveringOverTooltip = useRef(false);
-  const accountEllipsis = account ? `${account.substring(0, 2)}...${account.substring(account.length - 4)}` : null;
+  const accountEllipsis = account ? `${account.substring(0, 6)}...${account.substring(account.length - 4)}` : null;
   const { styles, attributes } = usePopper(targetRef, tooltipRef, {
     placement: "bottom-end",
     modifiers: [{ name: "offset", options: { offset: [0, 12] } }],
@@ -157,14 +158,14 @@ const UserMenu: React.FC<UserMenuProps> = ({
 
   return (
     <>
-      <StyledUserMenu ref={setTargetRef} {...props}>
-        <MenuIcon avatarSrc={avatarSrc} variant={variant} />
+      <StyledUserMenu onClick={onUserMenuModal} {...props}>
+        {/* <MenuIcon avatarSrc={avatarSrc} variant={variant} /> */}
         <LabelText title={text || account}>{text || accountEllipsis}</LabelText>
-        <ChevronDownIcon color="text" width="24px" />
+        {/* <ChevronDownIcon color="text" width="24px" /> */}
       </StyledUserMenu>
-      <Menu style={styles.popper} ref={setTooltipRef} {...attributes.popper} isOpen={isOpen}>
+      {/* <Menu style={styles.popper} ref={setTooltipRef} {...attributes.popper} isOpen={isOpen}>
         {children}
-      </Menu>
+      </Menu> */}
     </>
   );
 };
