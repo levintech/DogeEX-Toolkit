@@ -65,7 +65,9 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null, displayC
         </ModalTitle>
         <ModalCloseButton onDismiss={onDismiss} />
       </ModalHeader>
-      <CardDivider opacity={0.6}/>
+      <div style={{ padding: "0px 10px" }}>
+        <CardDivider opacity={0.6}/>
+      </div>
       <ModalBody width={["320px", null, "340px"]}>
         <WalletWrapper py="24px" maxHeight="453px" overflowY="auto">
           <Grid gridTemplateColumns="1fr 1fr">
