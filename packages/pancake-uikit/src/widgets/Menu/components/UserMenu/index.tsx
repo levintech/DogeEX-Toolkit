@@ -7,6 +7,7 @@ import isTouchDevice from "../../../../util/isTouchDevice";
 import { UserMenuProps, variants } from "./types";
 import MenuIcon from "./MenuIcon";
 import { UserMenuItem } from "./styles";
+// import useMatchBreakpoints from "./useMatchBreakpoints";
 
 const StyledUserMenu = styled(Flex)`
   align-items: center;
@@ -27,7 +28,6 @@ const StyledUserMenu = styled(Flex)`
 
 const LabelText = styled.div`
   color: ${({ theme }) => theme.colors.text};
-  display: none;
   font-weight: 600;
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -78,6 +78,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
   const [tooltipRef, setTooltipRef] = useState<HTMLDivElement | null>(null);
   const hideTimeout = useRef<number>();
   const isHoveringOverTooltip = useRef(false);
+  // const { isMobile } = useMatchBreakpoints();
   const accountEllipsis = account ? `${account.substring(0, 6)}...${account.substring(account.length - 4)}` : null;
   const { styles, attributes } = usePopper(targetRef, tooltipRef, {
     placement: "bottom-end",

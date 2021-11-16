@@ -8,6 +8,7 @@ import { ModalProps } from "./types";
 
 export const ModalHeader = styled.div<{ background?: string }>`
   align-items: center;
+  min-width: -webkit-fill-available;
   background: ${({ background }) => background || "transparent"};
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
   display: flex;
@@ -20,6 +21,7 @@ export const ModalTitle = styled(Flex)`
 `;
 
 export const ModalBody = styled(Flex)`
+  min-width: -webkit-fill-available;
   flex-direction: column;
   max-height: 90vh;
   overflow-y: auto;
@@ -48,11 +50,11 @@ export const ModalContainer = styled(Box)<{ minWidth: string }>`
   border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   border-radius: 32px;
   width: 100%;
+  min-width: -webkit-fill-available;
   max-height: 100vh;
   z-index: ${({ theme }) => theme.zIndices.modal};
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    width: auto;
     min-width: ${({ minWidth }) => minWidth};
     max-width: 500px;
   }
