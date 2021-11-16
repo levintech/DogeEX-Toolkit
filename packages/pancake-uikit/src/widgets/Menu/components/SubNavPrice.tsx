@@ -26,6 +26,17 @@ const PriceContainer = styled.div`
   }
 `;
 
+const SkeletonContainer = styled.div`
+  display: none;
+  align-items: center;
+  padding: 0px 12px;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 100%;
+    display: flex;
+  }
+`
+
 const PriceLink = styled.a`
   display: flex;
   align-items: center;
@@ -51,9 +62,9 @@ const SubNavPrice: React.FC<Props> = ({ miniDogePriceUsd }) => {
         </PriceLink>
       </PriceContainer>
     ) : (
-      <Flex alignItems="center" padding="0 12px">
+      <SkeletonContainer>
         <Skeleton width={100} height={32} />
-      </Flex>
+      </SkeletonContainer>
     );
 };
 
