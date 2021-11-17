@@ -116,7 +116,7 @@ const StyledNavLink = styled.div<Props>`
   cursor: pointer;
   align-items: center;
   height: ${SUBNAV_LINK_HEIGHT}px;
-  color: ${({ isActive, theme }) => (isActive ? theme.colors.textActive : theme.colors.textSubtle)};
+  color: ${({ isActive, theme }) => (isActive ? theme.colors.textActive : theme.colors.textInActive)};
   border-bottom: 4px solid;
   border-bottom-color: ${({ isActive, theme }) => (isActive ? theme.colors.primaryBright : "transparent")};
   // box-shadow: ${({ isActive, theme }) => (isActive ? `0px 4px 0px ${theme.colors.primaryBright}` : "none")};
