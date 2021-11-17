@@ -60,11 +60,13 @@ export type Colors = {
   background: string;
   backgroundDisabled: string;
   backgroundAlt: string;
+  backgroundNav: string;
   backgroundTooltip: string;
   text: string;
   textDisabled: string;
   textSubtle: string;
   textActive: string;
+  textInActive: string;
   textPrice: string;
   disabled: string;
   hamburger: string;
