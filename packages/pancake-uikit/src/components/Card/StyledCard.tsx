@@ -54,8 +54,6 @@ export const StyledCard = styled.div<StyledCardProps>`
       box-shadow: ${theme.colors.cardShadow} 0px 0px 12px;
     `}
 
-  padding: 1px 1px 3px 1px;
-
   ${space}
 `;
 
