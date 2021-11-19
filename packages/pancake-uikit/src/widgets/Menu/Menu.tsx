@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled, {DefaultTheme} from "styled-components";
+import { useLocation } from "react-router-dom";
 import throttle from "lodash/throttle";
 import Overlay from "../../components/Overlay/Overlay";
 import Flex from "../../components/Box/Flex";
@@ -16,7 +17,6 @@ import MiniDogePriceUsd from "./components/MiniDogePrice";
 import SubNavPrice from "./components/SubNavPrice";
 import SubNavThemeSwitcher from "./components/SubNavThemeSwitcher";
 import LangSelector from "./components/LangSelector";
-
 const Icons = IconModule as unknown as { [key: string]: React.FC<SvgProps> };
 
 export interface Props {
@@ -29,10 +29,10 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const StyledNav = styled.nav<{ showMenu: boolean }>`
+const StyledNav = styled.nav<{ showMenu: boolean, isHome: boolean }>`
   position: fixed;
-  // top: ${({ showMenu }) => (showMenu ? 0 : `-${MENU_HEIGHT}px`)};
-  top: 0px;
+  top: ${({ showMenu }) => (showMenu ? 0 : `-${MENU_HEIGHT}px`)};
+  // top: 0px;
   left: 0;
   transition: top 0.2s;
   display: flex;
@@ -42,7 +42,7 @@ const StyledNav = styled.nav<{ showMenu: boolean }>`
   padding-right: 16px;
   width: 100%;
   height: ${MENU_HEIGHT}px;
-  background-color: ${({ theme }) => theme.nav.background};
+  background-color: ${({ isHome, theme }) => isHome ? 'transparent' : theme.nav.background};
   z-index: 20;
   transform: translate3d(0, 0, 0);
 `;
@@ -52,9 +52,9 @@ const BodyWrapper = styled.div`
   display: flex;
 `;
 
-const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
+const Inner = styled.div<{ isPushed: boolean; showMenu: boolean, isHome: boolean }>`
   flex-grow: 1;
-  margin-top: ${({ showMenu }) => (showMenu ? `${MENU_HEIGHT}px` : 0)};
+  margin-top: ${({ isHome, showMenu }) => (isHome ? 0 : showMenu ? `${MENU_HEIGHT}px` : 0)};
   transition: margin-top 0.2s, margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translate3d(0, 0, 0);
   max-width: 100%;
@@ -152,6 +152,8 @@ const Menu: React.FC<NavProps> = ({
   const [isPushed, setIsPushed] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
   const refPrevOffset = useRef(window.pageYOffset);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -190,7 +192,7 @@ const Menu: React.FC<NavProps> = ({
 
   return (
     <Wrapper>
-      <StyledNav showMenu={showMenu}>
+      <StyledNav showMenu={showMenu} isHome={isHome}>
         <Logo
           isPushed={isPushed}
           togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
@@ -237,7 +239,7 @@ const Menu: React.FC<NavProps> = ({
           pushNav={setIsPushed}
           links={links}
         />
-        <Inner isPushed={isPushed} showMenu={showMenu}>
+        <Inner isPushed={isPushed} showMenu={showMenu} isHome={isHome}>
           {children}
         </Inner>
         <MobileOnlyOverlay show={isPushed} onClick={() => setIsPushed(false)} role="presentation" />

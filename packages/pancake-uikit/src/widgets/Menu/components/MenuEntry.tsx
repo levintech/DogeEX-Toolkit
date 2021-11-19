@@ -21,7 +21,7 @@ const rainbowAnimation = keyframes`
 `;
 
 const LinkLabel = styled.div<{ isActive: boolean }>`
-color: ${({ isActive, theme }) => (isActive ? theme.colors.primaryBright : theme.colors.textSubtle)};
+color: ${({ isActive, theme }) => (isActive ? theme.colors.primaryBright : theme.colors.textInActive)};
   transition: color 0.4s;
   flex-grow: 1;
 `;
@@ -35,7 +35,7 @@ const MenuEntry = styled.div<Props>`
   font-size: ${({ secondary }) => (secondary ? "14px" : "16px")};
   font-weight: 500;
   background-color: ${({ secondary, theme }) => (secondary ? theme.colors.background : "transparent")};
-  color: ${({ isActive, theme }) => (isActive ? theme.colors.primaryBright : theme.colors.textSubtle)};
+  color: ${({ isActive, theme }) => (isActive ? theme.colors.textActive : theme.colors.textInActive)};
   box-shadow: ${({ isActive, theme }) => (isActive ? `inset 4px 0px 0px ${theme.colors.primaryBright}` : "none")};
 
   a {
@@ -46,7 +46,7 @@ const MenuEntry = styled.div<Props>`
   }
 
   svg {
-    fill: ${({ theme }) => theme.colors.textSubtle};
+    fill: ${({ theme }) => theme.colors.textInActive};
   }
 
   &:hover {
